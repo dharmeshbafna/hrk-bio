@@ -16,7 +16,7 @@ interface Product {
     capacity: string;
     compliance: string;
   };
-  icon: React.ReactNode;
+icon: React.ReactElement<any>;
 }
 
 const Products: React.FC = () => {
@@ -159,7 +159,7 @@ const Products: React.FC = () => {
                 <div className="p-8 flex-grow">
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="p-2 bg-red-50 rounded-lg text-primary">
-                      {React.cloneElement(product.icon as React.ReactElement, { size: 24 })}
+                      {React.cloneElement(product.icon, { size: 24 })}
                     </div>
                     <h3 className="text-2xl font-bold text-dark group-hover:text-primary transition-colors">{product.title}</h3>
                   </div>
@@ -173,7 +173,7 @@ const Products: React.FC = () => {
                     </span>
                     <div className="flex -space-x-2">
                  {/*     <div className="w-8 h-8 rounded-full border-2 border-white bg-green-500 flex items-center justify-center text-[10px] text-white font-bold" title="Eco-Friendly">Bio</div>
-                      <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-500 flex items-center justify-center text-[10px] text-white font-bold" title="Custom Branding">P/L</div>*/}
+                      <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-500 flex items-center justify-center text-[10px] text-white font-bold" title="Custom Branding">P/L</div> */}
                     </div>
                   </div>
                 </div>
@@ -208,7 +208,7 @@ const Products: React.FC = () => {
               <div className="p-8 md:p-12">
                 <div className="flex items-center space-x-3 mb-6">
                    <div className="p-3 bg-red-50 rounded-2xl text-primary">
-                    {React.cloneElement(selectedProduct.icon as React.ReactElement, { size: 32 })}
+                    {React.cloneElement(selectedProduct.icon, { size: 32 })}
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-dark">{selectedProduct.title}</h2>
                 </div>
