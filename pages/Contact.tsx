@@ -40,8 +40,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-bold text-dark">Location</h4>
-                      <p className="text-gray-600">Plot No. 12, Survey No. 705, Insta Industrial Park, Taluka Bavla, 
-District, Ahmedabad, Guajrat, India - 382220 </p>
+                      <p className="text-gray-600">Ahmedabad, Guajrat, India</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
@@ -57,10 +56,10 @@ District, Ahmedabad, Guajrat, India - 382220 </p>
                     <div className="bg-red-50 p-3 rounded-full text-primary">
                       <Phone size={24} />
                     </div>
-                    <div>
+                    {/* <div>
                       <h4 className="font-bold text-dark">Phone</h4>
                       <p className="text-gray-600">+91 98250 65754</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
