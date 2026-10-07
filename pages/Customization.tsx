@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Tag, Edit, Settings, Briefcase } from 'lucide-react';
 
 const Customization: React.FC = () => {
@@ -42,14 +43,14 @@ const Customization: React.FC = () => {
                 <h3 className="text-2xl font-bold mb-6">Our Customization Capabilities</h3>
                 <ul className="space-y-6">
                   <li className="flex items-start space-x-4">
-                    <div className="w-8 h-8 rounded bg-primary flex items-center justify-center shrink-0">1</div>
+                    <div className="w-8 h-8 rounded bg-secondary flex items-center justify-center shrink-0">1</div>
                     <div>
                       <h4 className="font-bold">Sizes & Thickness</h4>
                       <p className="text-sm text-gray-400">Width, length, and gauge (microns) precisely as per order.</p>
                     </div>
                   </li>
                   <li className="flex items-start space-x-4">
-                    <div className="w-8 h-8 rounded bg-secondary flex items-center justify-center shrink-0">2</div>
+                    <div className="w-8 h-8 rounded bg-accent flex items-center justify-center shrink-0">2</div>
                     <div>
                       <h4 className="font-bold">Printing & Packaging</h4>
                       <p className="text-sm text-gray-400">Custom master bags, outer cartons, and label branding.</p>
@@ -64,9 +65,9 @@ const Customization: React.FC = () => {
                   </li>
                 </ul>
                 <div className="mt-10 pt-8 border-t border-gray-800">
-                  <button className="w-full bg-white text-dark font-bold py-4 rounded-xl hover:bg-primary hover:text-white transition-all">
+                  <Link to="/contact" className="block text-center w-full bg-white text-dark font-bold py-4 rounded-xl hover:bg-secondary hover:text-white transition-all">
                     Discuss Private Labeling
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

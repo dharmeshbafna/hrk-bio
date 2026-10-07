@@ -118,7 +118,7 @@ const About: React.FC = () => {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-red-50 p-12 rounded-3xl">
+            <div className="bg-primary-light p-12 rounded-3xl">
               <div className="flex items-center space-x-4 mb-6">
                 <Eye className="text-primary" size={40} />
                 <h2 className="text-3xl font-bold text-dark">Vision</h2>
@@ -127,7 +127,7 @@ const About: React.FC = () => {
                 "To become a global leader in durable, innovative, and eco-responsible garbage bag solutions, making waste management simpler, safer, and more sustainable worldwide. "
               </p>
             </div>
-            <div className="bg-orange-50 p-12 rounded-3xl">
+            <div className="bg-secondary-light p-12 rounded-3xl">
               <div className="flex items-center space-x-4 mb-6">
                 <Target className="text-secondary" size={40} />
                 <h2 className="text-3xl font-bold text-dark">Mission</h2>
@@ -182,7 +182,7 @@ const About: React.FC = () => {
                 caption: "Star Export House Recognition"
               }
             ].map((cert, idx) => (
-              <div key={idx} className="group cursor-pointer">
+              <a key={idx} href={encodeURI(`/${cert.image}`)} target="_blank" rel="noopener noreferrer" className="group block">
                 <div className="relative overflow-hidden rounded-lg shadow-md mb-4 bg-white aspect-[3/4] flex items-center justify-center border border-gray-200">
                   <img 
                     src={cert.image} 
@@ -193,7 +193,7 @@ const About: React.FC = () => {
                 <p className="text-center font-semibold text-dark text-sm md:text-base leading-tight group-hover:text-primary transition-colors">
                   {cert.caption}
                 </p>
-              </div>
+              </a>
             ))}
           </div>
         </div>

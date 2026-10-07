@@ -41,11 +41,11 @@ const GlobalPresenceMap: React.FC = () => {
         </filter>
 
         <g className={`transition-opacity duration-1000 ${startAnim ? 'opacity-100' : 'opacity-0'}`}>
-          <circle cx={origin.x} cy={origin.y} r="18" fill="#F57C00" fillOpacity="0.15">
+          <circle cx={origin.x} cy={origin.y} r="18" fill="#3DA352" fillOpacity="0.15">
             <animate attributeName="r" values="18;25;18" dur="3s" repeatCount="indefinite" />
           </circle>
-          <circle cx={origin.x} cy={origin.y} r="6" fill="#F57C00" stroke="#fff" strokeWidth="2" />
-          <text x={origin.x} y={origin.y - 10} textAnchor="middle" fill="#F57C00" fontSize="10" fontWeight="bold">{origin.name}</text>
+          <circle cx={origin.x} cy={origin.y} r="6" fill="#3DA352" stroke="#fff" strokeWidth="2" />
+          <text x={origin.x} y={origin.y - 10} textAnchor="middle" fill="#3DA352" fontSize="10" fontWeight="bold">{origin.name}</text>
         </g>
 
         {startAnim && destinations.map((dest, i) => {
@@ -58,7 +58,7 @@ const GlobalPresenceMap: React.FC = () => {
               <path
                 d={pathD}
                 fill="none"
-                stroke="#F57C00"
+                stroke="#3DA352"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeDasharray="1000"
@@ -69,7 +69,7 @@ const GlobalPresenceMap: React.FC = () => {
                   opacity: 0.5
                 }}
               />
-              <circle r="2.5" fill="#D32F2F">
+              <circle r="2.5" fill="#1B3F73">
                 <animateMotion path={pathD} begin={`${dest.delay}s`} dur="3s" repeatCount="indefinite" />
               </circle>
               <g 
@@ -79,8 +79,8 @@ const GlobalPresenceMap: React.FC = () => {
                   animationDelay: `${dest.delay + 2}s` 
                 }}
               >
-                <circle cx={dest.x} cy={dest.y} r="4" fill="#D32F2F" stroke="#fff" strokeWidth="1" />
-                <text x={dest.x} y={dest.y - 10} textAnchor="middle" fill="#D32F2F" fontSize="10" fontWeight="bold">{dest.name}</text>
+                <circle cx={dest.x} cy={dest.y} r="4" fill="#1B3F73" stroke="#fff" strokeWidth="1" />
+                <text x={dest.x} y={dest.y - 10} textAnchor="middle" fill="#1B3F73" fontSize="10" fontWeight="bold">{dest.name}</text>
               </g>
             </g>
           );

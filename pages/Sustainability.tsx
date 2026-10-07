@@ -38,7 +38,7 @@ const Sustainability: React.FC = () => {
               <p className="text-gray-500">Down-gauging technology that maintains strength while reducing material volume and carbon footprint during transport.</p>
             </div>
             <div className="text-center p-8 bg-gray-50 rounded-2xl border border-gray-100">
-              <div className="w-16 h-16 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-secondary-light text-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Wind size={32} />
               </div>
               <h3 className="text-xl font-bold text-dark mb-4">Bio-Based Alternatives</h3>
@@ -52,7 +52,7 @@ const Sustainability: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000" className="rounded-3xl shadow-2xl" alt="Nature" />
+              <img src="/eco-hands.jpg" alt="Hands holding soil with a young green plant" className="w-full h-auto rounded-3xl shadow-2xl"/>
             </div>
             <div>
               <h2 className="text-3xl font-bold mb-6">A Shared Responsibility</h2>
@@ -61,15 +61,15 @@ const Sustainability: React.FC = () => {
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="w-2 h-2 rounded-full bg-secondary"></div>
                     <span className="font-medium">Reduced Plastic Footprint</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="w-2 h-2 rounded-full bg-secondary"></div>
                     <span className="font-medium">Efficient Waste Re-processing</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="w-2 h-2 rounded-full bg-secondary"></div>
                     <span className="font-medium">Environmentally Safe Formulations</span>
                 </div>
               </div>
