@@ -52,7 +52,7 @@ const Sustainability: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000" className="rounded-3xl shadow-2xl" alt="Nature" />
+              <img src="/mulchfilm.jpg" alt="HRK mulch film supporting crop growth" className="w-full object-cover aspect-[3/2] rounded-3xl shadow-2xl"/>
             </div>
             <div>
               <h2 className="text-3xl font-bold mb-6">A Shared Responsibility</h2>
