@@ -276,7 +276,7 @@ const Products: React.FC = () => {
                       Request Bulk Quote
                     </Link>
                     <a
-                      href={`mailto:export@hrkbiopolymers.com?subject=${encodeURIComponent(`Technical Data Sheet Request - ${selectedProduct.title}`)}`}
+                      href={`mailto:export@hrk.co.in?subject=${encodeURIComponent(`Technical Data Sheet Request - ${selectedProduct.title}`)}`}
                       className="flex-1 text-center border-2 border-gray-200 text-dark py-4 rounded-2xl font-bold hover:bg-gray-50 transition-all"
                     >
                       Request Technical TDS

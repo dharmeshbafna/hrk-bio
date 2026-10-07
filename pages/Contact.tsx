@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Send } from 'lucide-react';
 
-const EXPORT_EMAIL = 'export@hrkbiopolymers.com';
+const EXPORT_EMAIL = 'export@hrk.co.in';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
