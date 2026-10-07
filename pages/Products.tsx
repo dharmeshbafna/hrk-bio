@@ -156,7 +156,7 @@ const Products: React.FC = () => {
                 onClick={() => setSelectedProduct(product)}
               >
                 {/* Image Container */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative aspect-[3/2] overflow-hidden">
                   <img 
                     src={product.image} 
                     alt={product.title} 
@@ -216,8 +216,8 @@ const Products: React.FC = () => {
             </button>
 
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="h-64 lg:h-full">
-                <img src={selectedProduct.image} alt={selectedProduct.title} className="w-full h-full object-cover" />
+              <div className="bg-white flex items-center justify-center p-4 pt-20 lg:p-8 lg:border-r lg:border-gray-100">
+                <img src={selectedProduct.image} alt={selectedProduct.title} className="w-full h-auto max-h-[70vh] object-contain rounded-2xl" />
               </div>
               <div className="p-8 md:p-12">
                 <div className="flex items-center space-x-3 mb-6">

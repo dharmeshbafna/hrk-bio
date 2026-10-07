@@ -381,7 +381,7 @@ const Home: React.FC = () => {
               </Link>
             </div>
             <div className="md:w-1/2">
-              <img src="/mulchfilm.jpg" alt="HRK mulch film supporting crop growth" className="w-full object-cover aspect-[3/2] rounded-3xl shadow-lg hover:scale-[1.02] transition-transform duration-500" />
+              <img src="/eco-hands.jpg" alt="Hands holding soil with a young green plant" className="w-full h-auto rounded-3xl shadow-lg hover:scale-[1.02] transition-transform duration-500" />
             </div>
           </div>
         </div>

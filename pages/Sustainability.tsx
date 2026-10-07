@@ -52,7 +52,7 @@ const Sustainability: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <img src="/mulchfilm.jpg" alt="HRK mulch film supporting crop growth" className="w-full object-cover aspect-[3/2] rounded-3xl shadow-2xl"/>
+              <img src="/eco-hands.jpg" alt="Hands holding soil with a young green plant" className="w-full h-auto rounded-3xl shadow-2xl"/>
             </div>
             <div>
               <h2 className="text-3xl font-bold mb-6">A Shared Responsibility</h2>
@@ -61,15 +61,15 @@ const Sustainability: React.FC = () => {
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="w-2 h-2 rounded-full bg-secondary"></div>
                     <span className="font-medium">Reduced Plastic Footprint</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="w-2 h-2 rounded-full bg-secondary"></div>
                     <span className="font-medium">Efficient Waste Re-processing</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="w-2 h-2 rounded-full bg-secondary"></div>
                     <span className="font-medium">Environmentally Safe Formulations</span>
                 </div>
               </div>
