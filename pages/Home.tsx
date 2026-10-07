@@ -46,19 +46,19 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text Content */}
             <div className="text-white">
-              <div className="inline-flex items-center space-x-2 bg-primary/20 backdrop-blur-md border border-primary/30 px-3 py-1 rounded-full mb-6">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <div className="inline-flex items-center space-x-2 bg-secondary/20 backdrop-blur-md border border-secondary/40 px-3 py-1 rounded-full mb-6">
+                <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
                 <span className="text-xs font-bold tracking-widest uppercase">Engineered for Performance.</span>
               </div>
-              <h1 className="text-5xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
                 Technology-driven manufacturing <br />
-                <span className="text-primary">Export-ready reliability</span>
+                <span className="text-secondary">Export-ready reliability</span>
               </h1>
               <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl">
                 HRK Biopolymers delivers durable, ISO-certified packaging solutions with large-scale capacity and export-ready reliability. Built on precision, sustainability, and global standards.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-                <Link to="/products" className="bg-primary hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold text-center transition-all flex items-center justify-center space-x-2 group shadow-xl">
+                <Link to="/products" className="bg-secondary hover:bg-secondary-dark text-white px-8 py-4 rounded-xl font-bold text-center transition-all flex items-center justify-center space-x-2 group shadow-xl">
                   <span>Explore Catalog</span>
                   <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -88,12 +88,14 @@ const Home: React.FC = () => {
               {/* Slider Controls */}
               <button 
                 onClick={prevSlide}
+                aria-label="Previous slide"
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-30"
               >
                 <ChevronLeft size={24} />
               </button>
               <button 
                 onClick={nextSlide}
+                aria-label="Next slide"
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-30"
               >
                 <ChevronRight size={24} />
@@ -105,7 +107,8 @@ const Home: React.FC = () => {
                   <button 
                     key={idx}
                     onClick={() => setCurrentSlide(idx)}
-                    className={`w-2 h-2 rounded-full transition-all ${idx === currentSlide ? 'bg-primary w-6' : 'bg-white/50'}`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    className={`h-2 rounded-full transition-all ${idx === currentSlide ? 'bg-secondary w-6' : 'bg-white/50 w-2'}`}
                   ></button>
                 ))}
               </div>
@@ -188,8 +191,7 @@ const Home: React.FC = () => {
                     <img src="kitchen_bags.jpg" alt="Heavy Duty Garbage Bags" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-dark mb-2">Drawstring Interleaved
-Trash Bags</h3>
+                    <h3 className="text-lg font-bold text-dark mb-2">Drawstring Interleaved Trash Bags</h3>
                     <p className="text-gray-600 text-sm">Durable and puncture-resistant bags for heavy waste disposal</p>
                   </div>
                 </div>
@@ -198,19 +200,17 @@ Trash Bags</h3>
                     <img src="scut.jpg" alt="S Cut Bags" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-dark mb-2">S Cut Garbage Bag 
-On Roll</h3>
+                    <h3 className="text-lg font-bold text-dark mb-2">S Cut Garbage Bag On Roll</h3>
                     <p className="text-gray-600 text-sm">Easy S-cut opening for quick, smooth tearing</p>
                   </div>
                 </div>
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-64 bg-gray-200 overflow-hidden">
-                    <img src="gbag3.jpg" />
+                    <img src="gbag3.jpg" alt="Star Sealed Garbage Bag on Roll" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-dark mb-2">Star Sealed Garbage Bag on Roll</h3>
-                    <p className="text-gray-600 text-sm">Perfect for Home/Offices/Restaurantand Commercial spaces.
-</p>
+                    <p className="text-gray-600 text-sm">Perfect for homes, offices, restaurants and commercial spaces.</p>
                   </div>
                 </div>
               </>
@@ -223,14 +223,13 @@ On Roll</h3>
                     <img src="tamper-evident.jpg" alt="Tamper Evident Bags" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-dark mb-2">Tamper  Evident 
-Bags</h3>
-                    <p className="text-gray-600 text-sm">Safe and hygienic films for food storage and preservation</p>
+                    <h3 className="text-lg font-bold text-dark mb-2">Tamper Evident Bags</h3>
+                    <p className="text-gray-600 text-sm">Tamper-proof security bags that show clear evidence of any opening attempt</p>
                   </div>
                 </div>
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-64 bg-gray-200 overflow-hidden">
-                    <img src="courier-bag.jpg" />
+                    <img src="courier-bag.jpg" alt="Courier Mailers" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-dark mb-2">Courier Mailers</h3>
@@ -239,7 +238,7 @@ Bags</h3>
                 </div>
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-64 bg-gray-200 overflow-hidden">
-                    <img src="ziplock.jpg" />
+                    <img src="ziplock.jpg" alt="Slider Storage Bags" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-dark mb-2">Slider Storage Bags</h3>
@@ -253,7 +252,7 @@ Bags</h3>
               <>
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-64 bg-gray-200 overflow-hidden">
-                    <img src="mulch.jpg" />
+                    <img src="mulch.jpg" alt="Mulch Film" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-dark mb-2">Mulch Film</h3>
@@ -262,7 +261,7 @@ Bags</h3>
                 </div>
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-64 bg-gray-200 overflow-hidden">
-                    <img src="construction.jpg" />
+                    <img src="construction.jpg" alt="Construction Sheets" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-dark mb-2">Construction Sheets</h3>
@@ -271,7 +270,7 @@ Bags</h3>
                 </div>
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-64 bg-gray-200 overflow-hidden">
-                    <img src="shrink.jpg" />
+                    <img src="shrink.jpg" alt="Shrink Film" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-dark mb-2">Shrink Film</h3>
@@ -284,7 +283,7 @@ Bags</h3>
 
           {/* Call to action */}
           <div className="text-center mt-16">
-            <Link to="/products" className="inline-flex items-center bg-primary hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg">
+            <Link to="/products" className="inline-flex items-center bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg">
               Explore Full Catalog <ChevronRight size={20} className="ml-2" />
             </Link>
           </div>
@@ -331,7 +330,7 @@ Bags</h3>
 
         {/* Button at bottom of section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20 relative -mt-32">
-          <a href="/contact" className="inline-flex items-center bg-primary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all">Partner with us globally</a>
+          <Link to="/contact" className="inline-flex items-center bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all">Partner with us globally</Link>
         </div>
       </section>
 
@@ -340,8 +339,7 @@ Bags</h3>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 relative">
-              <div className="absolute -inset-4 10 rounded-3xl -rotate-3"></div>
-              <img src="factory.jpg" />
+              <img src="factory.jpg" alt="HRK Bio Polymers manufacturing facility" className="w-full rounded-3xl shadow-xl object-cover" />
             </div>
             <div className="order-1 lg:order-2">
               <span className="text-primary font-bold text-sm uppercase tracking-widest mb-4 block">Manufacturing Excellence</span>

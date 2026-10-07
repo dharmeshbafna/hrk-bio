@@ -38,7 +38,7 @@ const Sustainability: React.FC = () => {
               <p className="text-gray-500">Down-gauging technology that maintains strength while reducing material volume and carbon footprint during transport.</p>
             </div>
             <div className="text-center p-8 bg-gray-50 rounded-2xl border border-gray-100">
-              <div className="w-16 h-16 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-secondary-light text-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Wind size={32} />
               </div>
               <h3 className="text-xl font-bold text-dark mb-4">Bio-Based Alternatives</h3>

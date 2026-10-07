@@ -29,7 +29,7 @@ const Quality: React.FC = () => {
                   { title: "Performance Testing", desc: "Simulated real-world use case evaluations." }
                 ].map((item, idx) => (
                   <div key={idx} className="flex space-x-4">
-                    <div className="shrink-0 mt-1 bg-red-50 p-2 rounded-lg text-primary">
+                    <div className="shrink-0 mt-1 bg-primary-light p-2 rounded-lg text-primary">
                       <ClipboardCheck size={20} />
                     </div>
                     <div>

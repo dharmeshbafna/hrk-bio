@@ -8,7 +8,7 @@ const PrivacyPolicy: React.FC = () => {
       <section className="bg-gradient-to-r from-dark to-gray-900 text-white py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center space-x-3 mb-4">
-            <Shield size={32} className="text-primary" />
+            <Shield size={32} className="text-secondary" />
             <h1 className="text-4xl md:text-5xl font-bold">Privacy Policy</h1>
           </div>
           <p className="text-xl text-gray-300">How we collect, use, and protect your data</p>

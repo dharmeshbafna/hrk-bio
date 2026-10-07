@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Layers, Truck, Package, Leaf, Shield, CheckCircle, Info, X, ChevronRight, Scale, Move, FileText } from 'lucide-react';
 
 interface Product {
@@ -21,6 +22,18 @@ icon: React.ReactElement<any>;
 
 const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  // Close the modal with Escape and stop the page behind it from scrolling
+  useEffect(() => {
+    if (!selectedProduct) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedProduct(null); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [selectedProduct]);
 
   const categories: Product[] = [
     {
@@ -158,7 +171,7 @@ const Products: React.FC = () => {
                 {/* Content */}
                 <div className="p-8 flex-grow">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="p-2 bg-red-50 rounded-lg text-primary">
+                    <div className="p-2 bg-primary-light rounded-lg text-primary">
                       {React.cloneElement(product.icon, { size: 24 })}
                     </div>
                     <h3 className="text-2xl font-bold text-dark group-hover:text-primary transition-colors">{product.title}</h3>
@@ -195,8 +208,9 @@ const Products: React.FC = () => {
           {/* Modal Content */}
           <div className="relative bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[2.5rem] shadow-2xl animate-in zoom-in duration-300">
             <button 
-              className="absolute top-6 right-6 p-3 bg-gray-100 hover:bg-red-50 hover:text-primary text-gray-500 rounded-full transition-all z-20"
+              className="absolute top-6 right-6 p-3 bg-gray-100 hover:bg-primary-light hover:text-primary text-gray-500 rounded-full transition-all z-20"
               onClick={() => setSelectedProduct(null)}
+              aria-label="Close"
             >
               <X size={24} />
             </button>
@@ -207,7 +221,7 @@ const Products: React.FC = () => {
               </div>
               <div className="p-8 md:p-12">
                 <div className="flex items-center space-x-3 mb-6">
-                   <div className="p-3 bg-red-50 rounded-2xl text-primary">
+                   <div className="p-3 bg-primary-light rounded-2xl text-primary">
                     {React.cloneElement(selectedProduct.icon, { size: 32 })}
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-dark">{selectedProduct.title}</h2>
@@ -258,12 +272,15 @@ const Products: React.FC = () => {
                   </div>
 
                   <div className="pt-8 flex flex-col sm:flex-row gap-4">
-                    <button className="flex-1 bg-primary text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all">
+                    <Link to="/contact" className="flex-1 text-center bg-primary hover:bg-primary-dark text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all">
                       Request Bulk Quote
-                    </button>
-                    <button className="flex-1 border-2 border-gray-200 text-dark py-4 rounded-2xl font-bold hover:bg-gray-50 transition-all">
-                      Download Technical TDS
-                    </button>
+                    </Link>
+                    <a
+                      href={`mailto:export@hrkbiopolymers.com?subject=${encodeURIComponent(`Technical Data Sheet Request - ${selectedProduct.title}`)}`}
+                      className="flex-1 text-center border-2 border-gray-200 text-dark py-4 rounded-2xl font-bold hover:bg-gray-50 transition-all"
+                    >
+                      Request Technical TDS
+                    </a>
                   </div>
                 </div>
               </div>
