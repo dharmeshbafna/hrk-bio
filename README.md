@@ -99,6 +99,19 @@ This project is configured for easy deployment on Vercel:
 4. Vercel automatically detects Vite configuration
 5. Deploy with one click
 
+## Contact Form Email (Zoho)
+
+The inquiry form posts to `api/contact.ts`, a Vercel serverless function that sends the message through the company Zoho mailbox over SMTP. Set these in Vercel → Project → Settings → Environment Variables, then redeploy:
+
+| Variable | Value |
+| --- | --- |
+| `ZOHO_USER` | Zoho mailbox used to send, e.g. `info@hrk.co.in` |
+| `ZOHO_PASS` | Zoho **app-specific password** for that mailbox (Zoho Mail → My Account → Security → App Passwords) |
+| `ZOHO_SMTP_HOST` | Optional. Defaults to `smtp.zoho.in`; use `smtp.zoho.com` if the Zoho account is on the .com data centre |
+| `CONTACT_TO` | Optional. Comma-separated recipients; defaults to `export@hrk.co.in` |
+
+Replies to the notification email go straight to the visitor.
+
 ## Pages
 
 - **Home** - Landing page with company overview
