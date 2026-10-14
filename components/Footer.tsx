@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin } from 'lucide-react';
+import { EXPORT_EMAIL, INFO_EMAIL, OFFICES } from '../constants/contact';
 
 const Footer: React.FC = () => {
   return (
@@ -47,18 +48,25 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-bold mb-6 border-l-4 border-gray-500 pl-3">Contact Us</h3>
             <ul className="space-y-4 text-gray-400 text-sm">
-              <li className="flex items-start space-x-3">
-                <MapPin size={18} className="text-secondary shrink-0" />
-                <span>Ahmedabad, Gujarat, India</span>
-              </li>
+              {OFFICES.map((office) => (
+                <li key={office.label} className="flex items-start space-x-3">
+                  <MapPin size={18} className="text-secondary shrink-0 mt-0.5" />
+                  <span>
+                    <span className="block text-white font-semibold">{office.label}</span>
+                    {office.lines.join(' ')}
+                  </span>
+                </li>
+              ))}
               {/*  <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-secondary shrink-0" />
                 <span>+91 98250 65754</span>
               </li> */}
-              <li className="flex items-center space-x-3">
-                <Mail size={18} className="text-secondary shrink-0" />
-                <a href="mailto:export@hrk.co.in" className="hover:text-white transition-colors">export@hrk.co.in</a>
-              </li>
+              {[EXPORT_EMAIL, INFO_EMAIL].map((email) => (
+                <li key={email} className="flex items-center space-x-3">
+                  <Mail size={18} className="text-secondary shrink-0" />
+                  <a href={`mailto:${email}`} className="hover:text-white transition-colors">{email}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

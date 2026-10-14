@@ -1,35 +1,32 @@
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { EXPORT_EMAIL, INFO_EMAIL, OFFICES } from '../constants/contact';
 
-const EXPORT_EMAIL = 'export@hrk.co.in';
+const EMPTY_FORM = { name: '', email: '', company: '', country: '', message: '' };
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    country: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState(EMPTY_FORM);
+  // Hidden honeypot field; bots fill it, people don't
+  const [website, setWebsite] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  const [submitted, setSubmitted] = useState(false);
-
-  // No backend is wired up, so hand the inquiry to the visitor's email client
-  // instead of silently discarding it.
-  const handleSubmit = (e: React.FormEvent) => {
+  // Sent by the /api/contact Vercel function through the company Zoho mailbox
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Export Inquiry - ${formData.company} (${formData.country})`;
-    const body = [
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Company: ${formData.company}`,
-      `Country / Region: ${formData.country}`,
-      '',
-      formData.message,
-    ].join('\n');
-    window.location.href = `mailto:${EXPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    setStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, website }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setStatus('sent');
+      setFormData(EMPTY_FORM);
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -47,24 +44,29 @@ const Contact: React.FC = () => {
             {/* Contact Info */}
             <div className="lg:col-span-5 space-y-12">
               <div>
-                <h2 className="text-3xl font-bold text-dark mb-8">Export Office</h2>
+                <h2 className="text-3xl font-bold text-dark mb-8">Our Offices</h2>
                 <div className="space-y-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-primary-light p-3 rounded-full text-primary">
-                      <MapPin size={24} />
+                  {OFFICES.map((office) => (
+                    <div key={office.label} className="flex items-start space-x-4">
+                      <div className="bg-primary-light p-3 rounded-full text-primary">
+                        <MapPin size={24} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-dark">{office.label}</h4>
+                        <p className="text-gray-600">
+                          {office.lines.map((line) => <span key={line} className="block">{line}</span>)}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-dark">Location</h4>
-                      <p className="text-gray-600">Ahmedabad, Gujarat, India</p>
-                    </div>
-                  </div>
+                  ))}
                   <div className="flex items-start space-x-4">
                     <div className="bg-primary-light p-3 rounded-full text-primary">
                       <Mail size={24} />
                     </div>
                     <div>
                       <h4 className="font-bold text-dark">Email</h4>
-                      <a href={`mailto:${EXPORT_EMAIL}`} className="text-gray-600 hover:text-primary transition-colors">{EXPORT_EMAIL}</a>
+                      <p className="text-gray-600"><span className="text-gray-400 text-sm">Export:</span> <a href={`mailto:${EXPORT_EMAIL}`} className="hover:text-primary transition-colors">{EXPORT_EMAIL}</a></p>
+                      <p className="text-gray-600"><span className="text-gray-400 text-sm">General:</span> <a href={`mailto:${INFO_EMAIL}`} className="hover:text-primary transition-colors">{INFO_EMAIL}</a></p>
                     </div>
                   </div>
                 </div>
@@ -89,13 +91,32 @@ const Contact: React.FC = () => {
             <div className="lg:col-span-7 scroll-mt-28" id="inquiry-form">
               <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
                 <h2 className="text-2xl font-bold text-dark mb-8">Export Inquiry Form</h2>
-                {submitted && (
-                  <div className="mb-6 p-4 rounded-xl bg-secondary-light text-secondary-dark text-sm">
-                    Your email app should now open with the inquiry pre-filled. If it didn't, please email us directly at{' '}
-                    <a href={`mailto:${EXPORT_EMAIL}`} className="font-bold underline">{EXPORT_EMAIL}</a>.
+                {status === 'sent' && (
+                  <div className="mb-6 p-4 rounded-xl bg-secondary-light text-secondary-dark text-sm flex items-start gap-3" role="status">
+                    <CheckCircle2 size={20} className="shrink-0" />
+                    <span>Thank you! Your inquiry has been sent. Our team will get back to you shortly.</span>
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="mb-6 p-4 rounded-xl bg-red-50 text-red-700 text-sm flex items-start gap-3" role="alert">
+                    <AlertCircle size={20} className="shrink-0" />
+                    <span>
+                      Sorry, your message could not be sent. Please try again, or email us directly at{' '}
+                      <a href={`mailto:${EXPORT_EMAIL}`} className="font-bold underline">{EXPORT_EMAIL}</a>.
+                    </span>
                   </div>
                 )}
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
@@ -103,6 +124,7 @@ const Contact: React.FC = () => {
                         type="text" 
                         required
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                        maxLength={200}
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                       />
@@ -113,6 +135,7 @@ const Contact: React.FC = () => {
                         type="email" 
                         required
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                        maxLength={200}
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                       />
@@ -125,6 +148,7 @@ const Contact: React.FC = () => {
                         type="text" 
                         required
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                        maxLength={200}
                         value={formData.company}
                         onChange={(e) => setFormData({...formData, company: e.target.value})}
                       />
@@ -135,6 +159,7 @@ const Contact: React.FC = () => {
                         type="text" 
                         required
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                        maxLength={100}
                         value={formData.country}
                         onChange={(e) => setFormData({...formData, country: e.target.value})}
                       />
@@ -146,15 +171,17 @@ const Contact: React.FC = () => {
                       rows={4} 
                       required
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-none"
-                      value={formData.message}
+                      maxLength={5000}
+                        value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                     ></textarea>
                   </div>
                   <button 
                     type="submit"
-                    className="w-full gradient-bg text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all"
+                    disabled={status === 'sending'}
+                    className="w-full gradient-bg text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all disabled:opacity-70 disabled:cursor-wait disabled:hover:scale-100"
                   >
-                    Submit Inquiry
+                    {status === 'sending' ? 'Sending…' : 'Submit Inquiry'}
                   </button>
                 </form>
               </div>
